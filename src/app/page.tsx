@@ -14,6 +14,23 @@ const LINKS = {
   // TODO: add once available: orcid, scholar, cv
 };
 
+
+const PATH = [
+  { when: "2020–23", what: "Theory-of-mind research & Project MYELIN outreach", where: "International Youth Neuroscience Association" },
+  { when: "2022", what: "R&D co-op: polymers, surfactants, guar chemistry", where: "Syensqo / Solvay" },
+  { when: "2022–23", what: "41 experiments on bacteria-inspired self-healing concrete; co-authored paper", where: "DARPA BRACE program" },
+  { when: "2024–", what: "EEG & neuromodulation ML pipelines", where: "CogNeW Lab, Drexel" },
+  { when: "2026", what: "Production RAG, multimodal models, clinical LLM evaluation", where: "American Board of Internal Medicine" },
+  { when: "2026", what: "Accepted talk on gaslighting LLMs", where: "Grace Hopper Celebration" },
+  { when: "now", what: "Epistemic behavior of language models", where: "Project Aletheia" },
+];
+
+const SIDE = [
+  { k: "Quant · Python", t: "Volatility Crash Simulator", d: "Monte Carlo over 100,000+ S&P 500 crash scenarios, pairing GARCH(1,1) with an LSTM to study how markets buckle under uncertainty." },
+  { k: "Sports analytics", t: "F1 podium predictions", d: "Forecasting Grand Prix podiums from driver stats, weather, and track profiles. Quant logic applied to a sport I love." },
+  { k: "Game design · community", t: "Chai & Charades", d: "A South Asian card game of memes, icons, and food references. It started for fun and grew into a community project about representation." },
+];
+
 const SIGNALS = [
   { k: "Talk", big: "GHC 2026", p: "Accepted: “Can an AI Be Gaslit About Its Own Previous Answer?”" },
   { k: "Finding", big: "2 judges", p: "Same 180 outputs, opposite verdicts on manipulation. The grader decided." },
@@ -30,6 +47,7 @@ export default function Home() {
             S<span>·</span>M
           </a>
           <div className="nav-links">
+            <a href="#about">About</a>
             <a href="#research">Research</a>
             <a href="#applied">Applied AI</a>
             <a href="#questions">Questions</a>
@@ -50,9 +68,9 @@ export default function Home() {
               <h1 className="h1">Sumeet Musfirah</h1>
               <p className="tagline">Studying intelligence across biological and artificial systems.</p>
               <p className="lede">
-                I study how language models, and the people who use them, decide <em>whom to believe</em>.
-                My background is in psychology and neuroscience at Drexel. I work across AI evaluation
-                research and applied AI engineering, and I build the infrastructure myself.
+                <strong>Neuroscience &amp; AI researcher at Drexel University.</strong> I study how language
+                models, and the people who use them, decide <em>whom to believe</em>. I work across AI
+                evaluation research and applied AI engineering, and I build the infrastructure myself.
               </p>
               <Ticker />
               <div className="cta">
@@ -87,6 +105,55 @@ export default function Home() {
               ))}
             </div>
           </Reveal>
+        </section>
+
+
+        {/* ── About ── */}
+        <section id="about" className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">00 · About</p>
+              <h2 className="h2">
+                Minds first, then <em>machines</em>.
+              </h2>
+            </Reveal>
+            <div className="about-grid">
+              <Reveal className="about-text">
+                <p>
+                  I started with brains: theory-of-mind research and neuroscience outreach as a teenager,
+                  then EEG and machine learning in Drexel&rsquo;s CogNeW Lab. The question that kept
+                  following me was how a mind decides what to trust. Now I ask it of language models. I
+                  measure when they hold their ground, when they cave to pressure, and whether the tools
+                  we use to grade them can be trusted at all.
+                </p>
+                <p>
+                  Along the way I have run materials experiments for a DARPA program, shipped production
+                  AI in medicine, and built a card game about South Asian culture. I like work that is
+                  rigorous enough to defend and human enough to matter.
+                </p>
+                <p className="degree">
+                  <span className="kicker">Education</span>
+                  Drexel University · B.S. Research &amp; Experimental Psychology · minors in Neuroscience
+                  and Data Science · expected 2028 · Nina Henderson Provost Scholar · Psi Chi
+                </p>
+                <p className="degree">
+                  <span className="kicker">Languages</span>
+                  English · Urdu · Hindi · French
+                </p>
+              </Reveal>
+              <Reveal delay={120}>
+                <ol className="path">
+                  {PATH.map((x) => (
+                    <li key={x.what}>
+                      <span className="when">{x.when}</span>
+                      <span className="what">{x.what}</span>
+                      <span className="where">{x.where}</span>
+                    </li>
+                  ))}
+                </ol>
+              </Reveal>
+            </div>
+          </div>
         </section>
 
         {/* ── Research ── */}
@@ -240,11 +307,37 @@ export default function Home() {
           </div>
         </section>
 
+
+        {/* ── Off the clock ── */}
+        <section className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">05 · Off the clock</p>
+              <h2 className="h2">Things I built because I <em>wanted to</em>.</h2>
+            </Reveal>
+            <div className="side">
+              {SIDE.map((x, i) => (
+                <Reveal key={x.t} className="card" delay={i * 90}>
+                  <p className="kicker">{x.k}</p>
+                  <h3 className="h3" style={{ marginTop: 8 }}>{x.t}</h3>
+                  <p style={{ marginTop: 10, fontSize: 15.5 }}>{x.d}</p>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal>
+              <p className="honors">
+                <span className="kicker">Honors</span> Winner, Drexel Close School Fast Pitch (2025) · Winner,
+                Aramark Disruptor Games (2024) · Winner, National Philosophy Olympiad, Pakistan (2023)
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ── Contact ── */}
         <section id="contact" className="contact">
           <div className="wrap">
             <Reveal>
-              <p className="kicker">05 · Contact</p>
+              <p className="kicker">06 · Contact</p>
               <h2 className="h2">
                 Working on how models <em>decide what to believe</em>? Let&rsquo;s talk.
               </h2>
