@@ -1,20 +1,40 @@
 import type { Metadata } from "next";
+import { Hanken_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
+const serif = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+});
+const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+
+const description =
+  "Sumeet Musfirah studies how language models, and the people who use them, decide whom to believe: AI safety, LLM evaluation, social influence, NeuroAI, and applied AI engineering.";
+
 export const metadata: Metadata = {
-  title: "Sumeet Musfirah",
-  description:
-    "A personal world for research, reflection, and building across neuroscience, AI, ethics, and thoughtful systems.",
+  metadataBase: new URL("https://sumeetmusfirah.com"),
+  title: "Sumeet Musfirah — AI × Cognition × Neuro",
+  description,
+  openGraph: {
+    title: "Sumeet Musfirah",
+    description,
+    url: "https://sumeetmusfirah.com",
+    images: ["/img/portrait.jpg"],
+  },
+  icons: { icon: "/icon.svg" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+      <body>
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

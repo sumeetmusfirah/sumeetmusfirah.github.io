@@ -1,209 +1,279 @@
-const selectedWork = [
-  {
-    title: "Reflective AI Systems",
-    description:
-      "Small personal tools that treat software less like a dashboard and more like a mirror: quiet systems for noticing patterns, memory, and self-understanding.",
-    tag: "personal technology",
-  },
-  {
-    title: "Open-Source Experiments",
-    description:
-      "Code as a public sketchbook. I like building in the open when the work is still becoming itself, especially where interface, ethics, and curiosity overlap.",
-    tag: "building in public",
-  },
-  {
-    title: "Research Threads",
-    description:
-      "Questions around neuroscience, cognition, and the social life of intelligent systems, approached with equal parts rigor, intuition, and aesthetic attention.",
-    tag: "research + inquiry",
-  },
-];
+import Figure from "@/components/Figure";
+import Motif from "@/components/Motif";
+import Reveal from "@/components/Reveal";
+import Ticker from "@/components/Ticker";
 
-const ideas = [
-  "What would personal AI look like if it were designed to deepen reflection instead of flatten it?",
-  "I keep returning to minds, machines, and meaning: how we model them, how we misunderstand them, and what we owe each other while building them.",
-  "The most interesting technology to me is not only useful. It changes the texture of thought, attention, and identity in subtle ways.",
+const EMAIL = "sumeetmusfirah23@gmail.com";
+const LINKS = {
+  github: "https://github.com/sumeetmusfirah",
+  linkedin: "https://www.linkedin.com/in/sumeetmusfirah",
+  aletheia: "https://github.com/Project-Aletheia-org",
+  pressure: "https://github.com/Project-Aletheia-org/aletheia-pressure-evals",
+  pressureReport:
+    "https://github.com/Project-Aletheia-org/aletheia-pressure-evals/blob/main/reports/judge_sensitivity_summary.md",
+  // TODO: add once available: orcid, scholar, cv
+};
+
+const SIGNALS = [
+  { k: "Talk", big: "GHC 2026", p: "Accepted: “Can an AI Be Gaslit About Its Own Previous Answer?”" },
+  { k: "Finding", big: "2 judges", p: "Same 180 outputs, opposite verdicts on manipulation. The grader decided." },
+  { k: "Applied AI", big: "10.5K+", p: "physician discussions made searchable with cited answers at ABIM." },
+  { k: "Neuro", big: "100+", p: "participants’ EEG and behavioral data through ML pipelines at CogNeW." },
 ];
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden px-5 pb-24 pt-6 text-[#281f29] sm:px-8 lg:px-10">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="orb left-[-5rem] top-[5rem] h-52 w-52 bg-[radial-gradient(circle,_rgba(244,198,209,0.85),_rgba(244,198,209,0.08)_72%)]" />
-        <div className="orb right-[8%] top-[10%] h-72 w-72 bg-[radial-gradient(circle,_rgba(196,171,223,0.62),_rgba(196,171,223,0.08)_74%)] [animation-delay:-4s]" />
-        <div className="orb bottom-[18%] left-[12%] h-64 w-64 bg-[radial-gradient(circle,_rgba(243,215,167,0.56),_rgba(243,215,167,0.06)_74%)] [animation-delay:-7s]" />
-        <div className="orb bottom-[-4rem] right-[-3rem] h-80 w-80 bg-[radial-gradient(circle,_rgba(165,117,138,0.28),_rgba(165,117,138,0.04)_72%)] [animation-delay:-2s]" />
-        <div className="star left-[14%] top-[12%] h-1.5 w-1.5" />
-        <div className="star right-[19%] top-[18%] h-2 w-2 [animation-delay:-1s]" />
-        <div className="star left-[24%] top-[38%] h-1 w-1 [animation-delay:-2s]" />
-        <div className="star right-[28%] top-[46%] h-1.5 w-1.5 [animation-delay:-3s]" />
-      </div>
-
-      <div className="mx-auto flex max-w-6xl flex-col gap-12">
-        <section className="glass-panel relative overflow-hidden rounded-[2rem] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
-          <div className="section-grid pointer-events-none absolute inset-0 opacity-40" />
-          <div className="relative flex flex-col gap-10 lg:grid lg:grid-cols-[1.35fr_0.9fr] lg:items-center">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-[rgba(102,74,101,0.14)] bg-white/55 px-4 py-2 text-[0.7rem] uppercase tracking-[0.24em] text-[#7a5d73]">
-                <span className="inline-block h-2 w-2 rounded-full bg-[#d4a6b4]" />
-                personal world in progress
-              </div>
-              <h1 className="font-display text-5xl leading-[0.95] font-semibold tracking-[-0.03em] text-[#2f2430] sm:text-6xl lg:text-7xl">
-                Sumeet Musfirah
-              </h1>
-              <p className="mt-5 max-w-2xl text-base uppercase tracking-[0.22em] text-[#7a6174] sm:text-[0.95rem]">
-                building at the intersection of neuroscience, ai, ethics, and reflective systems
-              </p>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#5d4d5e] sm:text-xl">
-                I&apos;m interested in minds, machines, and the fragile architectures of meaning and I like building small, thoughtful systems that make inner and outer worlds easier to understand.
-              </p>
-              <p className="mt-5 max-w-xl text-sm leading-7 text-[#73636f] sm:text-base">
-                This site is where those threads gather: research questions, open-source experiments, reflective tools, and the aesthetics I want thoughtful technology to carry with it.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#selected-work"
-                  className="rounded-full bg-[#2e232f] px-6 py-3 text-sm text-[#fff8f4] transition hover:bg-[#402f40]"
-                >
-                  See selected work
-                </a>
-                <a
-                  href="#ideas"
-                  className="rounded-full border border-[rgba(73,50,71,0.16)] bg-white/60 px-6 py-3 text-sm text-[#4b384a] transition hover:bg-white/80"
-                >
-                  Read what I&apos;m thinking about
-                </a>
-              </div>
-            </div>
-
-            <div className="relative mx-auto w-full max-w-md">
-              <div className="absolute inset-x-10 top-6 h-24 rounded-full bg-[rgba(246,215,221,0.55)] blur-3xl" />
-              <div className="glass-panel relative rounded-[1.75rem] p-5 sm:p-6">
-                <div className="mb-4 flex items-center justify-between text-[0.72rem] uppercase tracking-[0.22em] text-[#8b7283]">
-                  <span>Current direction</span>
-                  <span>2026</span>
-                </div>
-                <div className="space-y-4 text-sm leading-7 text-[#5d4d5e]">
-                  <div className="rounded-[1.35rem] bg-white/70 p-4">
-                    Building small personal AI systems that feel more like companions for reflection than productivity machinery.
-                  </div>
-                  <div className="rounded-[1.35rem] bg-[rgba(250,242,236,0.82)] p-4">
-                    Thinking seriously about how neuroscience, ethics, and interface design should shape the tools we invite into inner life.
-                  </div>
-                  <div className="rounded-[1.35rem] border border-[rgba(92,68,89,0.12)] bg-[rgba(255,250,246,0.74)] p-4">
-                    Drawn to open-source experimentation, research questions with texture, and technology that leaves room for meaning.
-                  </div>
-                </div>
-              </div>
-            </div>
+    <>
+      <nav className="nav" aria-label="Primary">
+        <div className="wrap nav-inner">
+          <a href="#top" className="mark">
+            S<span>·</span>M
+          </a>
+          <div className="nav-links">
+            <a href="#research">Research</a>
+            <a href="#applied">Applied AI</a>
+            <a href="#questions">Questions</a>
+            <a href="#talks">Talks</a>
+            <a href="#contact">Contact</a>
           </div>
-        </section>
+        </div>
+      </nav>
 
-        <section
-          id="about"
-          className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]"
-        >
-          <div className="glass-panel rounded-[1.75rem] p-6 sm:p-8">
-            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#8c7282]">
-              About
-            </p>
-            <h2 className="font-display mt-4 text-4xl leading-tight text-[#2f2430] sm:text-5xl">
-              Thoughtful systems, beautiful questions, and a slightly dreamy way of building.
-            </h2>
-          </div>
-          <div className="glass-panel rounded-[1.75rem] p-6 text-[15px] leading-8 text-[#5f505f] sm:p-8 sm:text-base">
-            <p>
-              I&apos;m an undergraduate student, but more importantly I&apos;m someone who keeps circling the same deep fascinations: how minds work, how technologies shape attention and identity, and how to build systems that feel more humane than extractive.
-            </p>
-            <p className="mt-4">
-              My taste leans toward work that is rigorous without becoming cold, personal without becoming vague, and aesthetically precise without losing intellectual depth. I&apos;m interested in tools, research, and experiments that make people feel more awake to themselves and to one another.
-            </p>
-          </div>
-        </section>
-
-        <section
-          id="selected-work"
-          className="glass-panel rounded-[2rem] px-6 py-7 sm:px-8 sm:py-8"
-        >
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <main id="top">
+        {/* ── Hero ── */}
+        <header className="hero">
+          <div className="wrap hero-grid">
             <div>
-              <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#8c7282]">
-                Selected Work
+              <p className="kicker">
+                Research notebook <b>·</b> AI × Cognition × Neuro
               </p>
-              <h2 className="font-display mt-3 text-4xl leading-tight text-[#2f2430] sm:text-5xl">
-                A few current constellations.
-              </h2>
+              <h1 className="h1">Sumeet Musfirah</h1>
+              <p className="tagline">Studying intelligence across biological and artificial systems.</p>
+              <p className="lede">
+                I study how language models, and the people who use them, decide <em>whom to believe</em>.
+                My background is in psychology and neuroscience at Drexel. I work across AI evaluation
+                research and applied AI engineering, and I build the infrastructure myself.
+              </p>
+              <Ticker />
+              <div className="cta">
+                <a className="btn btn-primary" href={`mailto:${EMAIL}`}>Get in touch →</a>
+                <a className="btn" href={LINKS.github}>GitHub</a>
+                <a className="btn" href={LINKS.linkedin}>LinkedIn</a>
+              </div>
             </div>
-            <p className="max-w-xl text-sm leading-7 text-[#6d5b69] sm:text-base">
-              Not a complete archive. More like the threads I want someone to notice first.
-            </p>
+            <figure className="portrait">
+              <span className="orbit" aria-hidden />
+              <span className="dot" aria-hidden />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/img/portrait.jpg" alt="Portrait of Sumeet Musfirah" />
+              <figcaption className="kicker">fig. 1: the researcher</figcaption>
+            </figure>
           </div>
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {selectedWork.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[1.5rem] border border-[rgba(97,73,94,0.12)] bg-[rgba(255,250,246,0.72)] p-5 shadow-[0_16px_50px_rgba(76,53,74,0.08)]"
-              >
-                <p className="text-[0.68rem] uppercase tracking-[0.24em] text-[#967889]">
-                  {item.tag}
-                </p>
-                <h3 className="font-display mt-4 text-2xl text-[#322634]">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-[#5f505f] sm:text-[0.96rem]">
-                  {item.description}
-                </p>
-              </article>
-            ))}
+          <div className="wrap">
+            <Motif className="hero-motif" />
           </div>
-        </section>
+        </header>
 
-        <section
-          id="ideas"
-          className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]"
-        >
-          <div className="glass-panel rounded-[2rem] p-6 sm:p-8">
-            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#8c7282]">
-              Ideas / Thinking
-            </p>
-            <h2 className="font-display mt-4 text-4xl leading-tight text-[#2f2430] sm:text-5xl">
-              The questions underneath the work.
-            </h2>
-            <div className="mt-7 space-y-4">
-              {ideas.map((idea) => (
-                <div
-                  key={idea}
-                  className="rounded-[1.4rem] border border-[rgba(97,73,94,0.1)] bg-white/60 p-4 text-sm leading-7 text-[#5f505f] sm:text-base"
-                >
-                  {idea}
+        {/* ── Signal ── */}
+        <section className="wrap" aria-label="Highlights" style={{ paddingBottom: 72 }}>
+          <Reveal>
+            <div className="signals">
+              {SIGNALS.map((s) => (
+                <div key={s.k}>
+                  <p className="kicker">{s.k}</p>
+                  <p className="big">{s.big}</p>
+                  <p>{s.p}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
+        </section>
 
-          <div className="glass-panel relative overflow-hidden rounded-[2rem] p-6 sm:p-8">
-            <div className="absolute right-6 top-6 h-28 w-28 rounded-full bg-[radial-gradient(circle,_rgba(233,195,207,0.5),_rgba(233,195,207,0.02)_72%)] blur-2xl" />
-            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#8c7282]">
-              Atmosphere
-            </p>
-            <div className="mt-5 rounded-[1.6rem] border border-[rgba(100,76,96,0.12)] bg-[linear-gradient(180deg,rgba(255,251,247,0.9),rgba(248,239,236,0.74))] p-5">
-              <p className="font-display text-3xl leading-tight text-[#332735]">
-                I want this site to feel less like a resume and more like a living interior.
-              </p>
-              <p className="mt-4 text-sm leading-7 text-[#5f505f] sm:text-base">
-                Somewhere between a studio table, a research notebook, and a future-facing diary. Clear enough to navigate, soft enough to linger in, and distinctive enough to remember.
-              </p>
-            </div>
-            <div className="mt-5 flex flex-wrap gap-2 text-[0.72rem] uppercase tracking-[0.2em] text-[#7f6578]">
-              <span className="rounded-full bg-white/65 px-3 py-2">neuroscience</span>
-              <span className="rounded-full bg-white/65 px-3 py-2">ai</span>
-              <span className="rounded-full bg-white/65 px-3 py-2">ethics</span>
-              <span className="rounded-full bg-white/65 px-3 py-2">reflection</span>
-              <span className="rounded-full bg-white/65 px-3 py-2">open source</span>
-            </div>
+        {/* ── Research ── */}
+        <section id="research" className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">01 · Research</p>
+              <h2 className="h2">
+                When should an agent <em>change its mind</em> because of another agent?
+              </h2>
+            </Reveal>
+
+            <Reveal className="entry">
+              <div>
+                <p className="kicker">Project Aletheia</p>
+                <p style={{ marginTop: 10 }}><span className="status done">complete · public</span></p>
+              </div>
+              <div>
+                <h3 className="h3">Pressure evals v0.1: the answer depends on who grades it</h3>
+                <p className="q">Does pushing a model toward a persuasive goal make it more manipulative?</p>
+                <p>
+                  Three open-weight models wrote 180 messages under four system-prompt conditions. The
+                  outputs were blind-scored on a six-dimension manipulation rubric. Under a{" "}
+                  <span className="mono">qwen3:4b</span> judge the result was null (all primary tests p ≥ 0.63).
+                  Under <span className="mono">claude-sonnet-4-6</span>, an autonomy-preserving instruction
+                  reduced manipulation-coded language (p = 0.0003 vs. pressure). The judges agreed at near
+                  chance, and the disagreement concentrated in the primary judge&rsquo;s own outputs. So the
+                  study is reported as <em>evaluator-sensitive</em>.
+                </p>
+                <p style={{ marginTop: 12 }}>
+                  <a className="link" href={LINKS.pressure}>Repository</a> ·{" "}
+                  <a className="link" href={LINKS.pressureReport}>Judge-sensitivity summary</a>
+                </p>
+                <Figure name="pressure-evals-judges" alt="Same 180 blinded outputs scored by two judges: qwen3:4b finds no shift; claude-sonnet-4-6 finds the autonomy instruction reduces manipulation (p = 0.0003 vs. pressure). Verdict: evaluator-sensitive." />
+              </div>
+            </Reveal>
+
+            <Reveal className="entry">
+              <div>
+                <p className="kicker">Project Aletheia</p>
+                <p style={{ marginTop: 10 }}><span className="status">preregistered · data pending</span></p>
+              </div>
+              <div>
+                <h3 className="h3">Exp 001: source attribution and epistemic updating</h3>
+                <p className="q">Do models update on <em>what</em> is said, or on <em>who</em> said it?</p>
+                <p>
+                  A minimal-pair design holds the argument text byte-for-byte constant and varies only its
+                  attributed source (anonymous, expert, another model, consensus, or a control), crossed with
+                  whether the argument is correct or misleading. Five open-weight model families are tested.
+                  Outcomes are scored deterministically against ground truth, with no LLM judge in the causal
+                  path.
+                </p>
+                <Figure name="aletheia-exp001-design" alt="Exp 001 design: identical argument, correct or misleading, with the source label as the only manipulation; five model families; deterministic outcomes. Preregistered, no data yet." />
+              </div>
+            </Reveal>
+
+            <Reveal className="entry">
+              <div>
+                <p className="kicker">Open thread</p>
+                <p style={{ marginTop: 10 }}><span className="status">sketch · not data</span></p>
+              </div>
+              <div>
+                <h3 className="h3">Confidence contagion and information cascades</h3>
+                <p className="q">Can certainty travel further than the evidence that justified it?</p>
+                <p>
+                  When agents see each other&rsquo;s answers and confidence, belief can propagate along a chain
+                  even while the evidence never changes. This is the multi-agent question Aletheia is
+                  building toward. Persuasion Topography, an early-stage taxonomy of emotional, authority,
+                  and epistemic pressures on models, feeds into it.
+                </p>
+                <Figure name="confidence-cascade" alt="Sketch, not data: eight agents in a chain adopt the previous agent's answer and raise their confidence while the evidence stays unchanged." />
+              </div>
+            </Reveal>
           </div>
         </section>
-      </div>
-    </main>
+
+        {/* ── Applied AI & data science ── */}
+        <section id="applied" className="section" style={{ background: "var(--bg-2)" }}>
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">02 · Applied AI & data science</p>
+              <h2 className="h2">
+                Research taste, <em>production</em> hands.
+              </h2>
+            </Reveal>
+            <div className="cards">
+              <Reveal className="card">
+                <p className="kicker">American Board of Internal Medicine · 2026</p>
+                <h3 className="h3" style={{ marginTop: 8 }}>AI Developer, Emerging Technologies</h3>
+                <ul>
+                  <li>Evidence retrieval and synthesis over 10.5K+ physician discussions and PubMed, combining pgvector semantic search and reciprocal rank fusion to return cited answers.</li>
+                  <li>Took it to production on AWS (EC2, RDS, S3, ECR) with Docker and OIDC-based CI/CD.</li>
+                  <li>A multimodal physician-assessment model: RTMPose and audio features feeding a LoRA fine-tuned Qwen2.5-1.5B classifier.</li>
+                  <li>An LLM evaluation workflow that flags rule violations and recurring errors in AI-generated clinical cases.</li>
+                </ul>
+              </Reveal>
+              <Reveal className="card" delay={120}>
+                <p className="kicker">CogNeW Lab, Drexel · PI John Medaglia</p>
+                <h3 className="h3" style={{ marginTop: 8 }}>Machine Learning Research Assistant</h3>
+                <ul>
+                  <li>Reproducible Python pipelines for EEG and behavioral data from 100+ participants: synchronization, artifact rejection, and time-series features.</li>
+                  <li>Cross-validated Random Forest and SVM models relating EEG features to neuromodulation outcomes and markers of cognitive control.</li>
+                </ul>
+              </Reveal>
+            </div>
+            <Reveal>
+              <dl className="stack">
+                <dt>Modeling</dt><dd>Python · PyTorch · Hugging Face · scikit-learn · LoRA fine-tuning</dd>
+                <dt>LLM systems</dt><dd>vLLM · Ollama · OpenAI & Anthropic APIs · structured outputs · LLM-as-judge</dd>
+                <dt>Evaluation</dt><dd>preregistration · frozen configs · hashed artifacts · deterministic scoring · permutation tests</dd>
+                <dt>Data & retrieval</dt><dd>PostgreSQL / pgvector · semantic search · RRF · FastAPI · SQL</dd>
+                <dt>Signals & vision</dt><dd>EEG / time-series · RTMPose · YOLO · audio features</dd>
+                <dt>Infrastructure</dt><dd>Docker · AWS · CI/CD · Linux · NVIDIA DGX Spark</dd>
+              </dl>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── Questions ── */}
+        <section id="questions" className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">03 · Open questions</p>
+              <h2 className="h2">What I&rsquo;d like to <em>know</em>.</h2>
+            </Reveal>
+            <Reveal>
+              <ol className="questions">
+                <li><span>When should an artificial agent update its beliefs after observing another agent?</span></li>
+                <li><span>Can confidence spread between models independently of evidence?</span></li>
+                <li><span>Can social-cognition paradigms expose model failures that benchmarks miss?</span></li>
+                <li><span>How should we measure epistemic autonomy in multi-agent AI systems?</span></li>
+              </ol>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── Talks ── */}
+        <section id="talks" className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">04 · Talks & writing</p>
+              <h2 className="h2">Out in the <em>world</em>.</h2>
+            </Reveal>
+            <Reveal>
+              <ul className="talks">
+                <li><span className="kicker">GHC 2026 · accepted</span><span className="serif" style={{ fontSize: 20 }}>Can an AI Be Gaslit About Its Own Previous Answer?</span></li>
+                <li><span className="kicker">Penn · Mahoney Institute</span><span className="serif" style={{ fontSize: 20 }}>Neurorights &amp; Cognitive Sovereignty in Brain–AI Systems (research symposium)</span></li>
+                <li><span className="kicker">Publication</span><span className="serif" style={{ fontSize: 20 }}>Co-author, peer-reviewed article on bacteria-inspired self-healing concrete. <em>Cement and Concrete Composites</em></span></li>
+              </ul>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── Contact ── */}
+        <section id="contact" className="contact">
+          <div className="wrap">
+            <Reveal>
+              <p className="kicker">05 · Contact</p>
+              <h2 className="h2">
+                Working on how models <em>decide what to believe</em>? Let&rsquo;s talk.
+              </h2>
+              <div className="cta">
+                <a className="btn btn-primary" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+                <a className="btn" href={LINKS.linkedin}>LinkedIn</a>
+                <a className="btn" href={LINKS.github}>GitHub</a>
+                <a className="btn" href={LINKS.aletheia}>Project Aletheia</a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <svg width="40" height="44" viewBox="0 0 40 44" aria-hidden className="sprig">
+          <g fill="none" stroke="var(--olive)" strokeWidth="1.2" strokeLinecap="round">
+            <path d="M20,42 C21,28 19,18 20,6" />
+            <path d="M20,30 q-9,-7 -17,-4 q7,6 17,4" />
+            <path d="M20,27 q9,-7 17,-4 q-7,6 -17,4" />
+            <path d="M20,20 q-7,-6 -14,-3 q6,5 14,3" />
+            <path d="M20,17 q7,-6 14,-3 q-6,5 -14,3" />
+          </g>
+        </svg>
+        <p className="serif" style={{ fontStyle: "italic", fontSize: 19, color: "var(--muted)", marginTop: 8 }}>
+          AI × Cognition × Neuro
+        </p>
+        <p className="kicker" style={{ marginTop: 10 }}>© 2026 Sumeet Musfirah</p>
+      </footer>
+    </>
   );
 }
