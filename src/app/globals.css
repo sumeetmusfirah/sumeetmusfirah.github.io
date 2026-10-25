@@ -8,19 +8,100 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", "SF Mono", "Menlo", monospace;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Baskerville", "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #f7f1eb;
+  --foreground: #281f29;
+  --surface: rgba(255, 250, 246, 0.72);
+  --surface-strong: rgba(255, 248, 244, 0.9);
+  --border-soft: rgba(101, 76, 97, 0.14);
+  --shadow-soft: 0 30px 80px rgba(89, 60, 85, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background-image:
+    radial-gradient(circle at top, rgba(255, 244, 237, 0.95), transparent 38%),
+    linear-gradient(180deg, #f9f4ee 0%, #f6efe9 42%, #f3ece7 100%);
+}
+
+body::selection {
+  background: rgba(155, 113, 144, 0.2);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Baskerville", "Times New Roman", serif;
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(20px);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(10px);
+  opacity: 0.72;
+  animation: drift 12s ease-in-out infinite;
+}
+
+.star {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 247, 237, 0.9);
+  box-shadow: 0 0 18px rgba(255, 247, 237, 0.9);
+  animation: twinkle 4.8s ease-in-out infinite;
+}
+
+.section-grid {
+  background-image:
+    linear-gradient(rgba(122, 97, 116, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 97, 116, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: center;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -16px, 0) scale(1.04);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }
