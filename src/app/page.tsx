@@ -256,6 +256,7 @@ export default function Home() {
                 <Link key={e.slug} className="note" href={`/journal/${e.slug}`}>
                   <p className="kicker">{fmtDate(e.date)} · {KIND_LABEL[e.kind]}</p>
                   <h3 className="h3">{e.title}</h3>
+                  <svg viewBox="0 0 200 8" preserveAspectRatio="none" aria-hidden><line x1="2" y1="4" x2="198" y2="4" /></svg>
                 </Link>
               ))}
             </div>
