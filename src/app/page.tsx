@@ -1,7 +1,11 @@
+import Link from "next/link";
 import Figure from "@/components/Figure";
+import Footer from "@/components/Footer";
 import Motif from "@/components/Motif";
+import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
 import Ticker from "@/components/Ticker";
+import { ENTRIES, KIND_LABEL, fmtDate } from "@/content/journal";
 
 const EMAIL = "sumeetmusfirah23@gmail.com";
 const LINKS = {
@@ -41,21 +45,7 @@ const SIGNALS = [
 export default function Home() {
   return (
     <>
-      <nav className="nav" aria-label="Primary">
-        <div className="wrap nav-inner">
-          <a href="#top" className="mark">
-            S<span>·</span>M
-          </a>
-          <div className="nav-links">
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#applied">Applied AI</a>
-            <a href="#questions">Questions</a>
-            <a href="#talks">Talks</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       <main id="top">
         {/* ── Hero ── */}
@@ -168,6 +158,27 @@ export default function Home() {
 
             <Reveal className="entry">
               <div>
+                <p className="kicker">Axiom-Neuro</p>
+                <p style={{ marginTop: 10 }}><span className="status">running · preprint</span></p>
+              </div>
+              <div>
+                <h3 className="h3">Do language models design and analyse experiments like scientists?</h3>
+                <p className="q">Can a model run a lab well enough to find a hidden cause and avoid planted traps?</p>
+                <p>
+                  A simulated cognitive-neuroscience lab fitted to real human EEG (ERP CORE), plus a second lab on
+                  real single cells. Agents design experiments, analyse them and submit calibrated causal claims.
+                  Scoring is arithmetic against the hidden truth, with no LLM judge anywhere. Language-model runs
+                  are in progress.
+                </p>
+                <p style={{ marginTop: 12 }}>
+                  <Link className="link" href="/research#axiom-neuro">Read more</Link> ·{" "}
+                  <a className="link" href="https://github.com/sumeetmusfirah/axiom-neuro">Repository</a>
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal className="entry">
+              <div>
                 <p className="kicker">Project Aletheia</p>
                 <p style={{ marginTop: 10 }}><span className="status done">complete · public</span></p>
               </div>
@@ -227,6 +238,28 @@ export default function Home() {
                 <Figure name="confidence-cascade" alt="Sketch, not data: eight agents in a chain adopt the previous agent's answer and raise their confidence while the evidence stays unchanged." />
               </div>
             </Reveal>
+            <Link className="btn more" href="/research">All papers &amp; preprints →</Link>
+          </div>
+        </section>
+
+        {/* ── Journal teaser ── */}
+        <section id="journal" className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <p className="kicker">From the journal</p>
+              <h2 className="h2">
+                The <em>working</em>, not just the results.
+              </h2>
+            </Reveal>
+            <div className="notes">
+              {ENTRIES.slice(0, 3).map((e) => (
+                <Link key={e.slug} className="note" href={`/journal/${e.slug}`}>
+                  <p className="kicker">{fmtDate(e.date)} · {KIND_LABEL[e.kind]}</p>
+                  <h3 className="h3">{e.title}</h3>
+                </Link>
+              ))}
+            </div>
+            <Link className="btn more" href="/journal">Open the notebook →</Link>
           </div>
         </section>
 
@@ -352,21 +385,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer">
-        <svg width="40" height="44" viewBox="0 0 40 44" aria-hidden className="sprig">
-          <g fill="none" stroke="var(--olive)" strokeWidth="1.2" strokeLinecap="round">
-            <path d="M20,42 C21,28 19,18 20,6" />
-            <path d="M20,30 q-9,-7 -17,-4 q7,6 17,4" />
-            <path d="M20,27 q9,-7 17,-4 q-7,6 -17,4" />
-            <path d="M20,20 q-7,-6 -14,-3 q6,5 14,3" />
-            <path d="M20,17 q7,-6 14,-3 q-6,5 -14,3" />
-          </g>
-        </svg>
-        <p className="serif" style={{ fontStyle: "italic", fontSize: 19, color: "var(--muted)", marginTop: 8 }}>
-          AI × Cognition × Neuro
-        </p>
-        <p className="kicker" style={{ marginTop: 10 }}>© 2026 Sumeet Musfirah</p>
-      </footer>
+      <Footer />
     </>
   );
 }

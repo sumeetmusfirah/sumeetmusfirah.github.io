@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Caveat, Hanken_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
 const serif = Newsreader({
@@ -9,6 +9,7 @@ const serif = Newsreader({
 });
 const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const hand = Caveat({ subsets: ["latin"], variable: "--font-hand" });
 
 const description =
   "Sumeet Musfirah studies how language models, and the people who use them, decide whom to believe: AI safety, LLM evaluation, social influence, NeuroAI, and applied AI engineering.";
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable} ${hand.variable}`}>
       <body>
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
