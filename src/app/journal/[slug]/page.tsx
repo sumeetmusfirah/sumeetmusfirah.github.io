@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
-import JournalCard from "@/components/JournalCard";
 import Nav from "@/components/Nav";
-import { ENTRIES } from "@/content/journal";
+import { ENTRIES, KIND_LABEL, fmtDate } from "@/content/journal";
 
 export const dynamicParams = false;
 
@@ -22,23 +21,32 @@ export default async function EntryPage({ params }: PageProps<"/journal/[slug]">
   const { slug } = await params;
   const i = ENTRIES.findIndex((x) => x.slug === slug);
   if (i < 0) notFound();
+  const e = ENTRIES[i];
   const newer = ENTRIES[i - 1];
   const older = ENTRIES[i + 1];
 
   return (
     <>
       <Nav current="journal" />
-      <main className="journal">
-        <div className="wrap">
-          <p className="crumb kicker">
-            <Link href="/journal">← Journal</Link> <b>·</b> {i + 1} of {ENTRIES.length}
+      <main>
+        <article className="leaf wrap narrow">
+          <p className="label">
+            {fmtDate(e.date)} · {KIND_LABEL[e.kind]}
+            {e.project && ` · ${e.project}`}
           </p>
-          <JournalCard entry={ENTRIES[i]} full />
-          <nav className="jturns" aria-label="More entries">
-            {newer ? <Link href={`/journal/${newer.slug}`}>← Newer</Link> : <span />}
-            {older ? <Link href={`/journal/${older.slug}`}>Older →</Link> : <span />}
+          <h1 className="leaf-t">{e.title}</h1>
+          <span className="flourish" aria-hidden>❦</span>
+          <div className="prose">
+            {e.body.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
+          </div>
+          <nav className="turns" aria-label="More entries">
+            {newer ? <Link className="link" href={`/journal/${newer.slug}`}>← Newer</Link> : <span />}
+            <Link className="link" href="/journal">All entries</Link>
+            {older ? <Link className="link" href={`/journal/${older.slug}`}>Older →</Link> : <span />}
           </nav>
-        </div>
+        </article>
       </main>
       <Footer />
     </>

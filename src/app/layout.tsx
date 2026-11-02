@@ -1,24 +1,18 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Hanken_Grotesk, JetBrains_Mono, Jost, Newsreader } from "next/font/google";
+import { Cormorant_Garamond, EB_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 
-const serif = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-});
-const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
-// Journal faces: an elegant display serif and a clean geometric sans.
-const jdisplay = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--font-jdisplay" });
-const jbody = Jost({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--font-jbody" });
+// A display serif for names and titles, a book serif for reading, and a quiet sans for small labels.
+const display = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "400", "500"], style: ["normal", "italic"], variable: "--font-display" });
+const serif = EB_Garamond({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif" });
+const sans = Jost({ subsets: ["latin"], weight: ["300", "400"], variable: "--font-sans" });
 
 const description =
-  "Sumeet Musfirah studies how language models, and the people who use them, decide whom to believe: AI safety, LLM evaluation, social influence, NeuroAI, and applied AI engineering.";
+  "Sumeet Musfirah studies neuroscience and psychology at Drexel University and researches how language models, and the people who use them, decide what to trust.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sumeetmusfirah.com"),
-  title: "Sumeet Musfirah — AI × Cognition × Neuro",
+  title: "Sumeet Musfirah",
   description,
   openGraph: {
     title: "Sumeet Musfirah",
@@ -26,12 +20,12 @@ export const metadata: Metadata = {
     url: "https://sumeetmusfirah.com",
     images: ["/img/portrait.jpg"],
   },
-  icons: { icon: "/icon.svg" },
+  icons: { icon: [{ url: "/favicon.ico", sizes: "48x48" }, { url: "/icon.svg", type: "image/svg+xml" }], apple: "/apple-touch-icon.png" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable} ${jdisplay.variable} ${jbody.variable}`}>
+    <html lang="en" className={`${display.variable} ${serif.variable} ${sans.variable}`}>
       <body>
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>

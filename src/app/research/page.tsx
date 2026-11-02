@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
-import Reveal from "@/components/Reveal";
 import { PAPERS, TALKS, type Paper } from "@/content/papers";
 
 export const metadata: Metadata = {
@@ -22,16 +21,15 @@ export default function Research() {
       <Nav current="research" />
       <main>
         <header className="page-head wrap">
-          <p className="kicker">Research <b>·</b> papers &amp; preprints</p>
           <h1 className="h1">Research</h1>
           <p className="tagline">
             Measuring judgement where the answer is known, and showing my working when it isn&rsquo;t.
           </p>
           <ol className="toc" aria-label="Papers on this page">
-            {PAPERS.map((p, i) => (
+            {PAPERS.map((p) => (
               <li key={p.slug}>
                 <a href={`#${p.slug}`}>
-                  <span className="mono">{String(i + 1).padStart(2, "0")}</span> {p.title.split(":")[0]}
+                  {p.title.split(":")[0]}
                 </a>
               </li>
             ))}
@@ -56,7 +54,7 @@ export default function Research() {
                   <p className="article-author">Sumeet Musfirah{p.status === "published" && " et al."}</p>
                   <p className="q">{p.question}</p>
                   <div className="abstract">
-                    <p className="kicker">Abstract</p>
+                    <p className="label">Abstract</p>
                     {p.abstract.map((para) => (
                       <p key={para.slice(0, 24)}>{para}</p>
                     ))}
@@ -66,7 +64,7 @@ export default function Research() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={p.figure.src} alt={p.figure.alt} loading="lazy" />
                       <figcaption>
-                        <span className="mono">Fig. {i + 1}.</span> {p.figure.caption}
+                        <em>Fig. {i + 1}.</em> {p.figure.caption}
                       </figcaption>
                     </figure>
                   )}
@@ -91,21 +89,16 @@ export default function Research() {
               </article>
           ))}
 
-          <section className="section" style={{ borderTop: 0 }}>
-            <Reveal className="section-head">
-              <p className="kicker">Talks</p>
-              <h2 className="h2">Said <em>out loud</em>.</h2>
-            </Reveal>
-            <Reveal>
-              <ul className="talks">
-                {TALKS.map((t) => (
-                  <li key={t.what}>
-                    <span className="kicker">{t.where}</span>
-                    <span className="serif" style={{ fontSize: 20 }}>{t.what}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+          <section className="talks-block">
+            <p className="label">Talks</p>
+            <ul className="talks">
+              {TALKS.map((t) => (
+                <li key={t.what}>
+                  <span className="talk-t">{t.what}</span>
+                  <span className="talk-w">{t.where}</span>
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
       </main>

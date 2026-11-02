@@ -91,7 +91,7 @@ export const PAPERS: Paper[] = [
     title: "Bacteria-inspired self-healing concrete (co-author)",
     question: "Can concrete repair its own cracks the way living tissue does?",
     abstract: [
-      "Research assistant on a DARPA program: 41 controlled experiments and conductivity and pH measurements on 120+ samples, contributing to a co-authored peer-reviewed article.",
+      "Research intern with DARPA, studying concrete that heals its own cracks with the help of bacteria. The work contributed to a co-authored, peer-reviewed article.",
     ],
     links: [],
     tags: ["materials", "experimental design"],
@@ -99,6 +99,6 @@ export const PAPERS: Paper[] = [
 ];
 
 export const TALKS = [
-  { where: "Grace Hopper Celebration 2026 · accepted", what: "Can an AI Be Gaslit About Its Own Previous Answer?" },
+  { where: "GHC · accepted talk", what: "Can an AI Be Gaslit About Its Own Previous Answer?" },
   { where: "Penn · Mahoney Institute research symposium", what: "Neurorights & Cognitive Sovereignty in Brain–AI Systems" },
 ];
