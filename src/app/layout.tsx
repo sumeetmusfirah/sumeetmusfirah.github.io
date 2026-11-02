@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://sumeetmusfirah.com",
     images: ["/img/portrait.jpg"],
   },
-  icons: { icon: [{ url: "/favicon.ico", sizes: "48x48" }, { url: "/icon.svg", type: "image/svg+xml" }], apple: "/apple-touch-icon.png" },
+  icons: { icon: [{ url: "/sm-mark.ico", sizes: "48x48" }, { url: "/sm-mark.svg", type: "image/svg+xml" }], shortcut: "/sm-mark.ico", apple: "/sm-mark-180.png" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

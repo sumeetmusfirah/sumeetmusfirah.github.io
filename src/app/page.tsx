@@ -15,17 +15,17 @@ const WORK = [
   {
     t: "Axiom",
     d: "A benchmark that asks whether language models can run an experiment like a scientist, scored against a hidden truth.",
-    href: "/research#axiom-neuro",
+    href: "/research#axiom",
   },
   {
-    t: "Pressure evals",
+    t: "Under pressure",
     d: "Does pushing a model toward a goal make it more manipulative? It depended on who did the grading.",
-    href: "/research#pressure-evals",
+    href: "/research#under-pressure",
   },
   {
     t: "Who said it",
     d: "Whether models are moved by an argument, or by the name attached to it.",
-    href: "/research#exp001",
+    href: "/research#who-said-it",
   },
 ];
 
@@ -44,16 +44,18 @@ export default function Home() {
 
       <main id="top">
         <header className="hero wrap">
+          <div className="hero-text">
+            <h1 className="h1">Sumeet Musfirah</h1>
+            <p className="tagline">On minds, machines, and whom we choose to believe.</p>
+            <p className="lede">
+              I study neuroscience and psychology at Drexel University, and I research how language models,
+              and the people who use them, decide what to trust.
+            </p>
+          </div>
           <figure className="portrait">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/img/portrait.jpg" alt="Portrait of Sumeet Musfirah" />
           </figure>
-          <h1 className="h1">Sumeet Musfirah</h1>
-          <p className="tagline">On minds, machines, and whom we choose to believe.</p>
-          <p className="lede">
-            I study neuroscience and psychology at Drexel University, and I research how language models,
-            and the people who use them, decide what to trust.
-          </p>
         </header>
 
         <section id="about" className="section wrap narrow">
@@ -129,13 +131,12 @@ export default function Home() {
         <section id="contact" className="section wrap narrow contact">
           <Reveal>
             <p className="label">Write to me</p>
-            <p className="contact-line">
-              <a className="link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            </p>
             <p className="contact-links">
-              <a className="link" href={LINKS.github}>GitHub</a>
+              <a className="link" href={`mailto:${EMAIL}`}>Email</a>
               <span aria-hidden>·</span>
               <a className="link" href={LINKS.linkedin}>LinkedIn</a>
+              <span aria-hidden>·</span>
+              <a className="link" href={LINKS.github}>GitHub</a>
             </p>
           </Reveal>
         </section>

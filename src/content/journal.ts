@@ -38,7 +38,7 @@ export const ENTRIES: Entry[] = [
     slug: "planted-probes",
     date: "2026-09-23",
     kind: "idea",
-    project: "Pressure evals",
+    project: "Under pressure",
     title: "Hiding a known answer inside the test",
     body: [
       "When two judges disagree and no person has checked the answers, I can say they differ but not who is right.",
@@ -49,7 +49,7 @@ export const ENTRIES: Entry[] = [
     slug: "the-judge-and-its-family",
     date: "2026-09-15",
     kind: "log",
-    project: "Pressure evals",
+    project: "Under pressure",
     title: "The judge and its own family",
     body: [
       "I gave the same set of answers to two AI judges. One said nothing had changed. The other saw a clear effect. They agreed about as often as a coin would.",
