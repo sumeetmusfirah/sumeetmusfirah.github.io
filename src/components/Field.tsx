@@ -228,10 +228,10 @@ export default function Field() {
     addEventListener("pointermove", onMove);
 
     const ray = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hit = new THREE.Vector3();
-    let clicks = 0;
+    let clicks = 0, gathering = false;
     const onClick = (e: MouseEvent) => {
       ray.setFromCamera(new THREE.Vector2((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1), camera);
-      if (!ray.ray.intersectPlane(plane, hit)) return;
+      if (gathering || !ray.ray.intersectPlane(plane, hit)) return;
       pts.worldToLocal(hit);
       if (voices.length >= MAX_VOICES) voices.splice(3, 1); // the three resident voices stay
       voices.push({ p: hit.clone(), axis: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, 1).normalize(), pull: 2.4, life: 6 });
@@ -251,6 +251,24 @@ export default function Field() {
       }
     };
     addEventListener("keydown", onKey);
+
+    // Tapping the name: everything gathers to one point, holds, then bursts back out.
+    const onGather = () => {
+      if (gathering) return;
+      gathering = true;
+      while (voices.length >= MAX_VOICES) voices.pop(); // make room; only temporary voices sit past index 2
+      voices.forEach((v) => { v.saved = v.pull; v.pull = 0; });
+      const centre: Voice = { p: new THREE.Vector3(0, 0, 0), axis: new THREE.Vector3(0, 0, 1), pull: 7, life: Infinity };
+      voices.push(centre);
+      say("for a second, everyone agreed.");
+      setTimeout(() => { centre.pull = -14; }, 1700);
+      setTimeout(() => {
+        voices.splice(voices.indexOf(centre), 1);
+        voices.forEach((v) => { v.pull = v.saved ?? v.pull; });
+        gathering = false;
+      }, 2300);
+    };
+    addEventListener("sm:gather", onGather);
 
     console.log("%chi, curious one. try typing chai, calm, or doubt.", "font: italic 16px serif; color: #e7b98f");
 
@@ -283,6 +301,7 @@ export default function Field() {
       removeEventListener("resize", resize);
       removeEventListener("pointermove", onMove);
       removeEventListener("keydown", onKey);
+      removeEventListener("sm:gather", onGather);
       canvas.removeEventListener("click", onClick);
       gpu.dispose(); geo.dispose(); mat.dispose(); renderer.dispose();
     };

@@ -40,7 +40,9 @@ em { font-style: italic; }
 /* ── Nav: name left, links right ── */
 .nav { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 28px 32px; position: relative; z-index: 2; }
 .name { font-family: var(--font-serif), serif; font-size: 26px; text-decoration: none; white-space: nowrap; }
-.name span { display: inline-block; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.name span { display: inline-block; }
+.name:hover span { animation: ripple .9s cubic-bezier(.3, .7, .3, 1) both; }
+@keyframes ripple { 0%, 100% { transform: none; } 35% { transform: translateY(-4px); opacity: .7; } }
 .nav nav { display: flex; gap: 22px; font-size: 14px; }
 .nav nav a { color: var(--dim); text-decoration: none; transition: color .3s; }
 .nav nav a:hover, .nav nav a[aria-current="page"] { color: var(--ink); }
@@ -74,10 +76,10 @@ em { font-style: italic; }
 .cup .steam { stroke-dasharray: 3 4; animation: steam 2.4s linear infinite; }
 .cup .steam.b { animation-delay: -1.2s; }
 @keyframes steam { from { stroke-dashoffset: 14; opacity: 0; } 30% { opacity: .9; } to { stroke-dashoffset: 0; opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .cup .steam { animation: none; } .name span { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .cup .steam { animation: none; } .name:hover span { animation: none; } }
 
 /* ── Inner pages ── */
-.page { max-width: 860px; margin: 0 auto; padding: 40px 32px; }
+.page { max-width: 860px; margin: 0 auto; padding: 40px 32px; position: relative; z-index: 1; }
 @media (max-width: 640px) { .page { padding: 24px 20px; } }
 .wrap, .narrow { max-width: none; padding: 0; }
 .title, .page-head .h1 { font-family: var(--font-serif), serif; font-weight: 400; font-size: clamp(44px, 7vw, 76px); line-height: 1; }
@@ -143,13 +145,12 @@ em { font-style: italic; }
 .footer .whisper { margin-top: 6px; font-family: var(--font-serif), serif; font-style: italic; font-size: 15px; opacity: 0; transition: opacity .6s; }
 .footer:hover .whisper { opacity: .8; }
 
-/* ── Neurons & chip traces at the edges: grow, linger, fade ── */
-.edges { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
-.sprite { position: absolute; overflow: visible; animation: linger 11s ease-in-out both; }
-.sprite path { fill: none; stroke: var(--ink); stroke-width: .8; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: grow 2.8s cubic-bezier(.4, 0, .2, 1) forwards; }
-.sprite circle { fill: var(--ink); opacity: 0; animation: bloom .8s ease 2s forwards; }
-.sprite.chip path { stroke: var(--glow); stroke-width: .7; }
-.sprite.chip circle { fill: none; stroke: var(--glow); stroke-width: .7; }
-@keyframes grow { to { stroke-dashoffset: 0; } }
+/* ── Inner pages: a neuron creeps out from wherever you click ── */
+.edges { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.growth { position: absolute; overflow: visible; animation: linger 14s ease-in-out both; }
+.growth path { fill: none; stroke: var(--ink); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: creep 2.4s cubic-bezier(.35, 0, .25, 1) forwards; }
+.growth circle { fill: var(--glow); opacity: 0; animation: bloom 1s ease forwards; }
+@keyframes creep { to { stroke-dashoffset: 0; } }
 @keyframes bloom { to { opacity: 1; } }
-@keyframes linger { 0% { opacity: 0; } 8%, 72% { opacity: .32; } 100% { opacity: 0; } }
+@keyframes linger { 0% { opacity: .4; } 65% { opacity: .4; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .growth, .growth path, .growth circle { animation-duration: .01s; } }

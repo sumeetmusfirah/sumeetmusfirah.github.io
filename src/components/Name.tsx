@@ -1,19 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 
 const NAME = "Sumeet Musfirah";
 
-/** The name; hovering it pulls the letters apart for a moment. */
+/**
+ * The name. Hovering sends a soft wave through the letters. On the home page, tapping it asks the
+ * particle field to gather everything to one point and let it go (Field listens for "sm:gather").
+ */
 export default function Name() {
-  const [offsets, setOffsets] = useState<string[] | null>(null);
-  const scatter = () =>
-    setOffsets([...NAME].map(() => `translate(${(Math.random() - 0.5) * 18}px, ${(Math.random() - 0.5) * 14}px) rotate(${(Math.random() - 0.5) * 20}deg)`));
+  const home = usePathname() === "/";
+  const onClick = (e: MouseEvent) => {
+    if (!home) return;
+    e.preventDefault();
+    dispatchEvent(new Event("sm:gather"));
+  };
   return (
-    <Link href="/" className="name" onMouseEnter={scatter} onMouseLeave={() => setOffsets(null)} aria-label={NAME}>
+    <Link href="/" className="name" onClick={onClick} aria-label={NAME}>
       {[...NAME].map((c, i) => (
-        <span key={i} aria-hidden style={{ transform: offsets?.[i] }}>{c === " " ? " " : c}</span>
+        <span key={i} aria-hidden style={{ animationDelay: `${i * 0.035}s` }}>{c === " " ? " " : c}</span>
       ))}
     </Link>
   );
