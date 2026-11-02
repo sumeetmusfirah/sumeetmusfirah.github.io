@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Bubbles from "@/components/Bubbles";
 import Field from "@/components/Field";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
@@ -26,8 +25,7 @@ export default function Research() {
         <header className="page-head wrap">
           <h1 className="h1">Research</h1>
         </header>
-        <Bubbles />
-        <p className="label" style={{ marginTop: 40 }}>The longer version</p>
+
 
         <div className="wrap">
           {PAPERS.map((p, i) => (
