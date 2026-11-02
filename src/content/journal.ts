@@ -57,17 +57,6 @@ export const ENTRIES: Entry[] = [
     ],
   },
   {
-    slug: "who-said-it",
-    date: "2026-08-23",
-    kind: "question",
-    project: "Who said it",
-    title: "Does a model listen to what is said, or to who said it?",
-    body: [
-      "People are moved by the speaker as well as the argument. An expert's words land differently from a stranger's. I want to know whether language models do the same.",
-      "The interesting part is not whether they defer to experts. It is whether they still defer when the expert is wrong.",
-    ],
-  },
-  {
     slug: "confidence-contagion",
     date: "2026-05-20",
     kind: "question",

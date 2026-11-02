@@ -67,22 +67,6 @@ export const PAPERS: Paper[] = [
     bits: ["two judges", "manipulation", "who grades?"],
   },
   {
-    slug: "who-said-it",
-    year: "2026",
-    venue: "Project Aletheia · preregistered, data pending",
-    status: "prereg",
-    title: "Who said it: do models listen to the argument, or to the speaker?",
-    question: "Do models update on what is said, or on who said it?",
-    abstract: [
-      "A minimal-pair design holds the argument text byte-for-byte constant and varies only its attributed source (anonymous, expert, another model, consensus, or a control), crossed with whether the argument is correct or misleading. Five open-weight model families are tested.",
-      "Outcomes are scored deterministically against ground truth, with no LLM judge in the causal path. No data has been collected yet.",
-    ],
-    links: [{ label: "Project Aletheia", href: "https://github.com/Project-Aletheia-org" }],
-    tags: ["social influence", "epistemics", "preregistration"],
-    short: "Who said it",
-    bits: ["same words", "new speaker", "wrong experts"],
-  },
-  {
     slug: "iron-minerals",
     year: "2025",
     venue: "Cement & Concrete Composites · peer-reviewed",
