@@ -85,7 +85,7 @@ type Voice = { p: THREE.Vector3; axis: THREE.Vector3; pull: number; life: number
  * Clicking adds a loud voice that fades. Hidden: type chai / calm / doubt, click seven times,
  * or find the cup in the corner.
  */
-export default function Field() {
+export default function Field({ quiet = false }: { quiet?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [toast, setToast] = useState("");
   const [brewing, setBrewing] = useState(false);
@@ -94,7 +94,7 @@ export default function Field() {
   useEffect(() => {
     const canvas = canvasRef.current!;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const SIDE = innerWidth < 700 || reduced ? 256 : 512; // 65k on phones, 262k on desktop
+    const SIDE = quiet || innerWidth < 700 || reduced ? 256 : 512; // 65k on phones and as a backdrop, 262k on the home page
     const N = SIDE * SIDE;
 
     // preserveDrawingBuffer lets each frame fade over the last, which draws the light trails.
@@ -154,7 +154,7 @@ export default function Field() {
         texPos: { value: null },
         texVel: { value: null },
         size: { value: 16 },
-        opacity: { value: SIDE === 512 ? 0.23 : 0.44 },
+        opacity: { value: quiet ? 0.22 : SIDE === 512 ? 0.23 : 0.44 },
         colA: { value: new THREE.Vector3() },
         colB: { value: new THREE.Vector3() },
         colC: { value: new THREE.Vector3() },
@@ -237,7 +237,7 @@ export default function Field() {
       voices.push({ p: hit.clone(), axis: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, 1).normalize(), pull: 2.4, life: 6 });
       if (++clicks === 7) say("Seven loud voices. Nobody is listening to the evidence anymore.");
     };
-    canvas.addEventListener("click", onClick);
+    if (!quiet) canvas.addEventListener("click", onClick);
 
     let typed = "";
     const onKey = (e: KeyboardEvent) => {
@@ -250,7 +250,7 @@ export default function Field() {
         setTimeout(() => voices.forEach((v) => { v.pull = v.saved ?? v.pull; }), 2500);
       }
     };
-    addEventListener("keydown", onKey);
+    if (!quiet) addEventListener("keydown", onKey);
 
     // Tapping the name: everything gathers to one point, holds, then bursts back out.
     const onGather = () => {
@@ -268,9 +268,9 @@ export default function Field() {
         gathering = false;
       }, 2300);
     };
-    addEventListener("sm:gather", onGather);
+    if (!quiet) addEventListener("sm:gather", onGather);
 
-    console.log("%chi, curious one. try typing chai, calm, or doubt.", "font: italic 16px serif; color: #e7b98f");
+    if (!quiet) console.log("%chi, curious one. try typing chai, calm, or doubt.", "font: italic 16px serif; color: #e7b98f");
 
     let raf = 0, last = performance.now();
     const frame = (now: number) => {
@@ -305,7 +305,9 @@ export default function Field() {
       canvas.removeEventListener("click", onClick);
       gpu.dispose(); geo.dispose(); mat.dispose(); renderer.dispose();
     };
-  }, []);
+  }, [quiet]);
+
+  if (quiet) return <canvas ref={canvasRef} className="field quiet" aria-hidden />;
 
   return (
     <>

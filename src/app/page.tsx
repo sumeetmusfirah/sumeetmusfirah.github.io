@@ -10,8 +10,7 @@ export default function Home() {
         <div>
           <h1 className="line">Hi, I&rsquo;m Sumeet.</h1>
           <p className="sub">
-            I study neuroscience and psychology at Drexel, and I test whether AI models can be talked out of the
-            truth.
+            I study neuroscience and psychology at Drexel and research AI behavior.
           </p>
         </div>
       </div>

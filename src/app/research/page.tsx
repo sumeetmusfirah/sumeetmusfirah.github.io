@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Bubbles from "@/components/Bubbles";
+import Field from "@/components/Field";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import { PAPERS, TALKS, type Paper } from "@/content/papers";
@@ -18,23 +20,14 @@ const STATUS: Record<Paper["status"], string> = {
 export default function Research() {
   return (
     <>
+      <div className="backdrop"><Field quiet /></div>
       <Nav current="research" />
       <main className="page">
         <header className="page-head wrap">
           <h1 className="h1">Research</h1>
-          <p className="tagline">
-            Measuring judgement where the answer is known, and showing my working when it isn&rsquo;t.
-          </p>
-          <ol className="toc" aria-label="Papers on this page">
-            {PAPERS.map((p) => (
-              <li key={p.slug}>
-                <a href={`#${p.slug}`}>
-                  {p.title.split(":")[0]}
-                </a>
-              </li>
-            ))}
-          </ol>
         </header>
+        <Bubbles />
+        <p className="label" style={{ marginTop: 40 }}>The longer version</p>
 
         <div className="wrap">
           {PAPERS.map((p, i) => (
@@ -51,7 +44,7 @@ export default function Research() {
                     {STATUS[p.status]}
                   </span>
                   <h2 className="article-title">{p.title}</h2>
-                  <p className="article-author">Sumeet Musfirah{p.status === "published" && " et al."}</p>
+                  <p className="article-author">{p.authors ?? "Sumeet Musfirah"}</p>
                   <p className="q">{p.question}</p>
                   <div className="abstract">
                     <p className="label">Abstract</p>

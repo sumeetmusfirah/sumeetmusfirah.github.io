@@ -10,6 +10,9 @@ export type Paper = {
   figure?: { src: string; alt: string; caption: string };
   links: { label: string; href: string }[];
   tags: string[];
+  authors?: string; // when I am not the only author
+  short: string; // the name on its bubble
+  bits: string[]; // tiny inner bubbles
 };
 
 export const PAPERS: Paper[] = [
@@ -38,6 +41,8 @@ export const PAPERS: Paper[] = [
       { label: "Preregistration", href: "https://github.com/sumeetmusfirah/axiom-neuro/blob/main/PREREGISTRATION.md" },
     ],
     tags: ["AI for science", "evaluation", "EEG", "causal inference"],
+    short: "Axiom",
+    bits: ["brain lab", "cell lab", "hidden traps", "no AI judge"],
   },
   {
     slug: "under-pressure",
@@ -58,6 +63,8 @@ export const PAPERS: Paper[] = [
       },
     ],
     tags: ["LLM evaluation", "manipulation", "LLM-as-judge"],
+    short: "Under pressure",
+    bits: ["two judges", "manipulation", "who grades?"],
   },
   {
     slug: "who-said-it",
@@ -72,23 +79,37 @@ export const PAPERS: Paper[] = [
     ],
     links: [{ label: "Project Aletheia", href: "https://github.com/Project-Aletheia-org" }],
     tags: ["social influence", "epistemics", "preregistration"],
+    short: "Who said it",
+    bits: ["same words", "new speaker", "wrong experts"],
   },
   {
-    slug: "self-healing-concrete",
-    year: "",
-    venue: "Cement and Concrete Composites · peer-reviewed",
+    slug: "iron-minerals",
+    year: "2025",
+    venue: "Cement & Concrete Composites · peer-reviewed",
     status: "published",
-    title: "Bacteria-inspired self-healing concrete (co-author)",
-    question: "Can concrete repair its own cracks the way living tissue does?",
+    title: "Microbial-induced stable iron mineral production for corrosion mitigation in reinforced concrete",
+    question: "Can bacteria turn rust on steel into a coat that protects it?",
     abstract: [
-      "Research intern with DARPA, studying concrete that heals its own cracks with the help of bacteria. The work contributed to a co-authored, peer-reviewed article.",
+      "From my time as a DARPA research intern. Iron-reducing bacteria can turn the reactive rust on steel reinforcement into stable minerals that sit on the steel as a protective layer.",
+      "We compared three bacterial strains under different conditions. What they were fed, and how much oxygen they had, decided how much protective mineral formed, and one strain made a comparatively dense layer.",
     ],
-    links: [],
-    tags: ["materials", "experimental design"],
+    authors: "Namakiaraghi, Verdú, Rahmaninezhad, Musfirah, Hubler, Najafi, Sales, Farnam",
+    links: [{ label: "Paper", href: "https://doi.org/10.1016/j.cemconcomp.2025.106214" }],
+    tags: ["materials", "microbiology", "co-author"],
+    short: "Bacteria vs. rust",
+    bits: ["bacteria", "steel", "rust", "concrete"],
   },
 ];
 
 export const TALKS = [
-  { where: "GHC · accepted talk", what: "Can an AI Be Gaslit About Its Own Previous Answer?" },
+  { where: "Grace Hopper Conference · accepted talk", what: "Can an AI Be Gaslit About Its Own Previous Answer?" },
   { where: "Penn · Mahoney Institute research symposium", what: "Neurorights & Cognitive Sovereignty in Brain–AI Systems" },
+];
+
+export const HONORS = [
+  { what: "Winner, Close School Fast Pitch", where: "Drexel University · 2025" },
+  { what: "Nina Henderson Provost Scholar", where: "Drexel University" },
+  { what: "Winner, Aramark Disruptor Games", where: "2024" },
+  { what: "Winner, National Philosophy Olympiad", where: "Pakistan · 2023" },
+  { what: "Psi Chi", where: "International Honor Society in Psychology" },
 ];

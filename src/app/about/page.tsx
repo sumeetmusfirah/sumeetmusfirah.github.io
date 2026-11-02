@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import { HONORS } from "@/content/papers";
 
 export const metadata: Metadata = {
   title: "About — Sumeet Musfirah",
@@ -40,6 +41,15 @@ export default function About() {
             <ul className="path">
               {PATH.map((x) => (
                 <li key={x.where}>
+                  <span>{x.what}</span>
+                  <span className="dim">{x.where}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="label" style={{ marginTop: 34 }}>Honors &amp; wins</p>
+            <ul className="path" style={{ marginTop: 0 }}>
+              {HONORS.map((x) => (
+                <li key={x.what}>
                   <span>{x.what}</span>
                   <span className="dim">{x.where}</span>
                 </li>

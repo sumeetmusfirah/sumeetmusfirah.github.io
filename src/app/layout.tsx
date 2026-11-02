@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
-const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-serif" });
+// Fraunces with its soft, slightly wonky axes: warmer and more hand-made than a sharp display serif.
+const serif = Fraunces({ subsets: ["latin"], style: ["normal", "italic"], axes: ["SOFT", "WONK", "opsz"], variable: "--font-serif" });
 const sans = Inter({ subsets: ["latin"], weight: ["300", "400"], variable: "--font-sans" });
 
 const description =
