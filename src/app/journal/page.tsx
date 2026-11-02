@@ -13,7 +13,7 @@ export default function Journal() {
   return (
     <>
       <Nav current="journal" />
-      <main>
+      <main className="page">
         <header className="page-head wrap narrow">
           <h1 className="h1">Journal</h1>
           <p className="tagline">Notes from the work, kept as it happens.</p>

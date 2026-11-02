@@ -28,7 +28,7 @@ export default async function EntryPage({ params }: PageProps<"/journal/[slug]">
   return (
     <>
       <Nav current="journal" />
-      <main>
+      <main className="page">
         <article className="leaf wrap narrow">
           <p className="label">
             {fmtDate(e.date)} · {KIND_LABEL[e.kind]}

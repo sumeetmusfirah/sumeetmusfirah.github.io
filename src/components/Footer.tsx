@@ -1,8 +1,11 @@
+import Edges from "@/components/Edges";
+
 export default function Footer() {
   return (
     <footer className="footer">
-      <span className="flourish" aria-hidden>❦</span>
+      <Edges />
       <p>© {new Date().getFullYear()} Sumeet Musfirah</p>
+      <p className="whisper">psst: the home page has a cup of chai hidden in it.</p>
     </footer>
   );
 }

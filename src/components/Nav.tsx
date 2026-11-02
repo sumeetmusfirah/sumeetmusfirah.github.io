@@ -1,16 +1,19 @@
 import Link from "next/link";
+import Name from "@/components/Name";
 
-/** Centered wordmark with a quiet row of links beneath it. */
-export default function Nav({ current }: { current?: "research" | "journal" }) {
+export const EMAIL = "sumeetmusfirah23@gmail.com";
+
+export default function Nav({ current }: { current?: "research" | "journal" | "about" }) {
+  const here = (k: string) => (current === k ? "page" : undefined);
   return (
-    <nav className="nav" aria-label="Primary">
-      <Link href="/" className="mark">Sumeet Musfirah</Link>
-      <div className="nav-links">
-        <Link href="/#about">About</Link>
-        <Link href="/research" aria-current={current === "research" ? "page" : undefined}>Research</Link>
-        <Link href="/journal" aria-current={current === "journal" ? "page" : undefined}>Journal</Link>
-        <Link href="/#contact">Contact</Link>
-      </div>
-    </nav>
+    <header className="nav">
+      <Name />
+      <nav aria-label="Primary">
+        <Link href="/research" aria-current={here("research")}>Research</Link>
+        <Link href="/journal" aria-current={here("journal")}>Journal</Link>
+        <Link href="/about" aria-current={here("about")}>About</Link>
+        <a href={`mailto:${EMAIL}`}>Say hi</a>
+      </nav>
+    </header>
   );
 }

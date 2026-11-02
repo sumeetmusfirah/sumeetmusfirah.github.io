@@ -19,7 +19,7 @@ export default function Research() {
   return (
     <>
       <Nav current="research" />
-      <main>
+      <main className="page">
         <header className="page-head wrap">
           <h1 className="h1">Research</h1>
           <p className="tagline">
