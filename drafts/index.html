@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&family=Pinyon+Script&family=Caveat:wght@400;600&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Jost, system-ui, sans-serif; background: #ddd; }
+  .switch { position: sticky; top: 0; z-index: 50; display: flex; justify-content: center; gap: 8px; padding: 12px; background: #111; }
+  .switch button { font: 400 12px Jost, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #bbb; background: none; border: 1px solid #444; padding: 9px 16px; cursor: pointer; }
+  .switch button.on { color: #111; background: #fff; border-color: #fff; }
+  .d { display: none; min-height: 100vh; }
+  .d.on { display: block; }
+  img { display: block; }
+  a { color: inherit; }
+
+  /* ───────── A · Dôen / Ulla Johnson: warm, romantic ───────── */
+  .A { background: #f3ebe0; color: #3d2f26; font-family: "Cormorant Garamond", serif; }
+  .A .top { text-align: center; padding: 40px 20px 0; }
+  .A .sig { font-family: "Pinyon Script", cursive; font-size: 44px; color: #9a4f35; line-height: 1; }
+  .A nav { margin-top: 14px; display: flex; justify-content: center; gap: 28px; font: 300 12px Jost, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: #8a7765; }
+  .A .hero { max-width: 1100px; margin: 0 auto; padding: 56px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .A .photo { position: relative; }
+  .A .photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: sepia(.18) saturate(.9) contrast(.96); border-radius: 220px 220px 0 0; }
+  .A .photo svg { position: absolute; left: -38px; bottom: -26px; width: 120px; }
+  .A h1 { font-weight: 300; font-size: clamp(48px, 6vw, 78px); line-height: 1; }
+  .A h1 em { color: #9a4f35; }
+  .A .sub { font-style: italic; font-size: 24px; color: #8a7765; margin-top: 14px; }
+  .A p.body { font-size: 21px; line-height: 1.6; margin-top: 22px; max-width: 26em; }
+  .A .btn { display: inline-block; margin-top: 30px; font: 400 12px Jost, sans-serif; letter-spacing: .22em; text-transform: uppercase; color: #fff; background: #9a4f35; padding: 14px 26px; border-radius: 40px; text-decoration: none; }
+  .A .band { background: #e8d9c6; padding: 64px 24px; text-align: center; }
+  .A .band h2 { font-weight: 300; font-size: 38px; font-style: italic; }
+  .A .cards { max-width: 1000px; margin: 34px auto 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; text-align: left; }
+  .A .card { background: #f8f1e7; padding: 26px; border-radius: 4px; }
+  .A .card b { display: block; font-weight: 400; font-size: 26px; color: #9a4f35; }
+  .A .card span { font-size: 18px; color: #6c5a4c; }
+  .A footer { text-align: center; padding: 48px; font: 300 11px Jost; letter-spacing: .24em; text-transform: uppercase; color: #8a7765; }
+
+  /* ───────── B · Zimmermann / Chloé: polished luxury ───────── */
+  .B { background: #fbfaf7; color: #141414; font-family: Jost, sans-serif; font-weight: 300; }
+  .B .top { text-align: center; padding: 34px 20px 22px; border-bottom: 1px solid #e7e4dc; }
+  .B .mono { font-family: "Bodoni Moda", serif; font-size: 30px; letter-spacing: .08em; }
+  .B .mono span { color: #6b1f2a; margin: 0 .12em; }
+  .B nav { margin-top: 10px; display: flex; justify-content: center; gap: 34px; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #777; }
+  .B .hero { max-width: 1180px; margin: 0 auto; padding: 80px 32px 90px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: end; }
+  .B .kick { font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: #6b1f2a; }
+  .B h1 { font-family: "Bodoni Moda", serif; font-weight: 400; font-size: clamp(52px, 7.4vw, 104px); line-height: .95; letter-spacing: -.01em; margin-top: 22px; text-transform: uppercase; }
+  .B .line { width: 64px; height: 1px; background: #141414; margin: 34px 0 26px; }
+  .B p.body { font-size: 18px; line-height: 1.75; max-width: 25em; color: #333; }
+  .B .photo img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: grayscale(.15) contrast(1.03); }
+  .B .cap { font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: #999; margin-top: 12px; }
+  .B .work { border-top: 1px solid #e7e4dc; }
+  .B .row { max-width: 1180px; margin: 0 auto; padding: 40px 32px; display: grid; grid-template-columns: 80px 1fr 1.2fr; gap: 32px; align-items: baseline; border-bottom: 1px solid #e7e4dc; }
+  .B .row i { font-family: "Bodoni Moda", serif; font-style: italic; color: #6b1f2a; }
+  .B .row b { font-family: "Bodoni Moda", serif; font-weight: 400; font-size: 32px; }
+  .B .row span { color: #555; font-size: 16.5px; }
+  .B .contact { text-align: center; padding: 100px 20px; }
+  .B .contact a { font-family: "Bodoni Moda", serif; font-size: 28px; text-decoration: none; border-bottom: 1px solid #6b1f2a; margin: 0 14px; }
+  .B footer { text-align: center; padding: 30px; font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: #999; border-top: 1px solid #e7e4dc; }
+
+  /* ───────── C · Sézane / Faithfull: relaxed, personal ───────── */
+  .C { background: #f1e8d8; color: #2f3a40; font-family: "Libre Caslon Text", serif; }
+  .C .top { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; padding: 30px 24px; }
+  .C .name { font-family: Caveat, cursive; font-size: 38px; color: #4d6f88; }
+  .C nav { display: flex; gap: 24px; font: 400 12px Jost; letter-spacing: .18em; text-transform: uppercase; }
+  .C .hero { max-width: 1120px; margin: 0 auto; padding: 30px 24px 70px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .C h1 { font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.08; }
+  .C h1 u { text-decoration: none; background: linear-gradient(transparent 62%, #c9d7c0 62%); }
+  .C p.body { font-size: 18px; line-height: 1.75; margin-top: 22px; max-width: 26em; }
+  .C .note { font-family: Caveat, cursive; font-size: 26px; color: #b0634a; margin-top: 18px; transform: rotate(-2deg); display: inline-block; }
+  .C .collage { position: relative; height: 520px; }
+  .C .pol { position: absolute; background: #fff; padding: 12px 12px 44px; box-shadow: 0 14px 30px -14px rgba(0,0,0,.35); }
+  .C .pol img { width: 100%; height: 100%; object-fit: cover; }
+  .C .pol figcaption { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: Caveat, cursive; font-size: 22px; color: #555; }
+  .C .p1 { width: 300px; height: 380px; left: 40px; top: 10px; transform: rotate(-4deg); }
+  .C .p2 { width: 210px; height: 250px; right: 10px; top: 210px; transform: rotate(5deg); }
+  .C .p2 img { object-position: 50% 20%; filter: sepia(.35) saturate(.7); }
+  .C .tape { position: absolute; width: 90px; height: 26px; background: rgba(201,215,192,.75); top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); }
+  .C .strip { background: #4d6f88; color: #f1e8d8; padding: 60px 24px; }
+  .C .strip-in { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 34px; }
+  .C .strip b { display: block; font-family: Caveat, cursive; font-size: 34px; font-weight: 600; }
+  .C .strip span { font-size: 16px; line-height: 1.6; opacity: .92; }
+  .C footer { text-align: center; padding: 40px; font-family: Caveat, cursive; font-size: 24px; color: #4d6f88; }
+
+  @media (max-width: 760px) {
+    .A .hero, .B .hero, .C .hero { grid-template-columns: 1fr; }
+    .A .cards, .C .strip-in { grid-template-columns: 1fr; }
+    .B .row { grid-template-columns: 1fr; gap: 6px; }
+    .C .collage { height: 460px; }
+    .C .p1 { width: 240px; height: 300px; left: 0; }
+    .C .p2 { width: 170px; height: 210px; top: 220px; }
+    .A nav, .B nav, .C nav { gap: 14px; }
+    .C .top { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="switch">
+  <button data-k="A" class="on">A · Dôen / Ulla Johnson</button>
+  <button data-k="B">B · Zimmermann / Chloé</button>
+  <button data-k="C">C · Sézane / Faithfull</button>
+</div>
+
+<!-- A -->
+<section class="d A on" id="A">
+  <div class="top">
+    <div class="sig">Sumeet Musfirah</div>
+    <nav><span>About</span><span>Research</span><span>Journal</span><span>Contact</span></nav>
+  </div>
+  <div class="hero">
+    <div>
+      <h1>Minds, machines &amp; <em>whom we believe</em></h1>
+      <p class="sub">Neuroscience &amp; psychology, Drexel University</p>
+      <p class="body">I research how language models, and the people who use them, decide what to trust.</p>
+      <a class="btn" href="#">Write to me</a>
+    </div>
+    <div class="photo">
+      <img src="portrait.jpg" alt="">
+      <svg viewBox="0 0 120 140" fill="none" stroke="#9a4f35" stroke-width="1.3" stroke-linecap="round">
+        <path d="M60 136 C62 100 56 70 60 20"/><path d="M60 100 q-24-14-44-6 q18 16 44 6"/><path d="M60 92 q24-16 46-8 q-18 16-46 8"/>
+        <path d="M60 70 q-18-14-34-8 q14 12 34 8"/><path d="M60 64 q18-14 34-8 q-14 12-34 8"/><circle cx="60" cy="16" r="5" fill="#e3b8a6"/>
+      </svg>
+    </div>
+  </div>
+  <div class="band">
+    <h2>Selected work</h2>
+    <div class="cards">
+      <div class="card"><b>Axiom</b><span>Can a language model run an experiment like a scientist?</span></div>
+      <div class="card"><b>Under pressure</b><span>When the grader decides the result.</span></div>
+      <div class="card"><b>Who said it</b><span>Do models listen to the argument, or to the speaker?</span></div>
+    </div>
+  </div>
+  <footer>© 2026 Sumeet Musfirah</footer>
+</section>
+
+<!-- B -->
+<section class="d B" id="B">
+  <div class="top">
+    <div class="mono">S<span>·</span>M</div>
+    <nav><span>About</span><span>Research</span><span>Journal</span><span>Contact</span></nav>
+  </div>
+  <div class="hero">
+    <div>
+      <p class="kick">Neuroscience · Psychology · AI</p>
+      <h1>Sumeet<br>Musfirah</h1>
+      <div class="line"></div>
+      <p class="body">I study neuroscience and psychology at Drexel University, and I research how language models, and the people who use them, decide what to trust.</p>
+    </div>
+    <div class="photo">
+      <img src="portrait.jpg" alt="">
+      <p class="cap">Philadelphia</p>
+    </div>
+  </div>
+  <div class="work">
+    <div class="row"><i>I.</i><b>Axiom</b><span>Can a language model run an experiment like a scientist?</span></div>
+    <div class="row"><i>II.</i><b>Under pressure</b><span>When the grader decides the result.</span></div>
+    <div class="row"><i>III.</i><b>Who said it</b><span>Do models listen to the argument, or to the speaker?</span></div>
+  </div>
+  <div class="contact"><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a></div>
+  <footer>© 2026 Sumeet Musfirah</footer>
+</section>
+
+<!-- C -->
+<section class="d C" id="C">
+  <div class="top">
+    <div class="name">Sumeet Musfirah</div>
+    <nav><span>About</span><span>Research</span><span>Journal</span><span>Contact</span></nav>
+  </div>
+  <div class="hero">
+    <div>
+      <h1>How minds, and machines, decide <u>what to trust</u>.</h1>
+      <p class="body">I study neuroscience and psychology at Drexel University, and I research how language models, and the people who use them, make up their minds.</p>
+      <span class="note">currently: teaching models to doubt ✎</span>
+    </div>
+    <div class="collage">
+      <figure class="pol p1"><span class="tape"></span><img src="portrait.jpg" alt=""><figcaption>me, mid-thought</figcaption></figure>
+      <figure class="pol p2"><img src="portrait.jpg" alt=""><figcaption>philly, fall</figcaption></figure>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="strip-in">
+      <div><b>Axiom</b><span>Can a language model run an experiment like a scientist?</span></div>
+      <div><b>Under pressure</b><span>When the grader decides the result.</span></div>
+      <div><b>Who said it</b><span>Do models listen to the argument, or to the speaker?</span></div>
+    </div>
+  </div>
+  <footer>say hi →</footer>
+</section>
+
+<script>
+  document.querySelectorAll('.switch button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('.switch button, .d').forEach(x => x.classList.remove('on'));
+    b.classList.add('on'); document.getElementById(b.dataset.k).classList.add('on'); scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>
