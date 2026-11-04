@@ -96,6 +96,5 @@ export const HONORS = [
   { what: "Winner, Close School Fast Pitch", where: "Drexel University · 2025" },
   { what: "Nina Henderson Provost Scholar", where: "Drexel University" },
   { what: "Winner, Aramark Disruptor Games", where: "2024" },
-  { what: "Winner, National Philosophy Olympiad", where: "Pakistan · 2023" },
   { what: "Psi Chi", where: "International Honor Society in Psychology" },
 ];
