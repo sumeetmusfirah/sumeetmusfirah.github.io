@@ -55,7 +55,11 @@ export default function About() {
                 </li>
               ))}
             </ul>
-            <p className="dim small">
+            <p className="p-links" style={{ marginTop: 26 }}>
+              <a className="link" href="https://github.com/sumeetmusfirah">GitHub</a>
+              <a className="link" href="https://www.linkedin.com/in/sumeetmusfirah">LinkedIn</a>
+            </p>
+            <p className="dim small" style={{ marginTop: 18 }}>
               B.S. Research &amp; Experimental Psychology, Drexel University · minors in Neuroscience and Data Science
             </p>
           </div>

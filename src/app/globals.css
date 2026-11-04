@@ -31,7 +31,7 @@ body {
 a { color: inherit; }
 em { font-style: italic; }
 /* every Fraunces heading gets the soft, wonky cut */
-.name, .line, .title, .page-head .h1, .tagline, .article-title, .q, .talk-t, .contents-t, .contents-k, .leaf-t, .toast, .footer .whisper {
+.name, .line, .title, .page-head .h1, .tagline, .article-title, .q, .talk-t, .contents-t, .contents-k, .leaf-t, .toast {
   font-variation-settings: "SOFT" 100, "WONK" 1;
 }
 
@@ -146,8 +146,6 @@ em { font-style: italic; }
 
 /* footer */
 .footer { text-align: center; padding: 50px 24px 46px; font-size: 13px; color: var(--dim); }
-.footer .whisper { margin-top: 6px; font-family: var(--font-serif), serif; font-style: italic; font-size: 15px; opacity: 0; transition: opacity .6s; }
-.footer:hover .whisper { opacity: .8; }
 
 /* ── Inner pages: a neuron creeps out from wherever you click ── */
 .edges { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
@@ -159,36 +157,26 @@ em { font-style: italic; }
 @keyframes linger { 0% { opacity: .4; } 65% { opacity: .4; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .growth, .growth path, .growth circle { animation-duration: .01s; } }
 
-/* ── Research: quiet particles behind, work as floating bubbles ── */
+/* ── Research: quiet particles behind ── */
 .backdrop { position: fixed; inset: 0; z-index: 0; opacity: .7; pointer-events: none; }
 .field.quiet { cursor: default; }
-.bubbles { position: relative; height: min(80vh, 780px); min-height: 580px; width: 100vw; max-width: 1240px; left: 50%; transform: translateX(-50%); }
-@media (max-width: 640px) { .bubbles { height: 1100px; } }
-.threads { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.threads line { stroke: var(--glow); stroke-opacity: .28; stroke-width: .7; }
-.bubble {
-  position: absolute; left: 0; top: 0; border-radius: 50%; padding: 0; cursor: pointer; color: var(--ink);
-  border: 1px solid rgba(242, 237, 230, .2);
-  background: radial-gradient(circle at 32% 28%, rgba(242, 237, 230, .09), rgba(242, 237, 230, .015) 58%, rgba(231, 185, 143, .04));
-  box-shadow: inset 0 0 30px rgba(242, 237, 230, .04);
-  backdrop-filter: blur(2px);
-  transition: border-color .4s, box-shadow .4s;
-}
-.bubble:hover { border-color: rgba(231, 185, 143, .55); box-shadow: inset 0 0 36px rgba(231, 185, 143, .1), 0 0 40px -10px rgba(231, 185, 143, .35); }
-.bubble.burst { animation: burst .5s ease-out both; }
-@keyframes burst { 60% { scale: 1.25; opacity: 0; } 100% { scale: 1.25; opacity: 0; } }
-.bubble-t { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70%; text-align: center; font-family: var(--font-serif), serif; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: clamp(16px, 2vw, 22px); line-height: 1.1; }
-.bit {
-  position: absolute; transform: translate(-50%, -50%); padding: 3px 8px; border-radius: 999px;
-  border: 1px solid rgba(242, 237, 230, .16); font-size: 10.5px; letter-spacing: .02em; color: var(--dim); white-space: nowrap;
-  background: rgba(15, 15, 20, .85);
-  transition: transform .35s cubic-bezier(.2, .9, .3, 1.4), opacity .35s;
-}
-.bit.popped { transform: translate(-50%, -50%) scale(1.5); opacity: 0; transition: transform .3s ease-out, opacity .3s ease-out; }
-.reveal-card { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 20px; background: rgba(7, 7, 10, .6); backdrop-filter: blur(6px); animation: fadein .3s ease both; }
-.card-in { position: relative; max-width: 640px; width: 100%; max-height: 86vh; overflow: auto; padding: 34px 32px 28px; border-radius: 18px; background: rgba(15, 15, 20, .94); border: 1px solid var(--rule); animation: rise .45s cubic-bezier(.2, .9, .3, 1.2) both; }
-.card-in .close { position: absolute; right: 16px; top: 10px; font-size: 26px; color: var(--dim); background: none; border: 0; cursor: pointer; }
-.card-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; font-size: 15px; }
+
+/* ── Research: one row per project, tap to open ── */
+.projects { list-style: none; padding: 0; margin-top: 40px; }
+.projects li { border-top: 1px solid var(--rule); scroll-margin-top: 24px; }
+.projects li:last-child { border-bottom: 1px solid var(--rule); }
+.projects summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 26px 0; }
+.projects summary::-webkit-details-marker { display: none; }
+.p-name { font-family: var(--font-serif), serif; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: clamp(28px, 3.6vw, 38px); line-height: 1.1; transition: color .3s; }
+.projects summary:hover .p-name { color: var(--glow); }
+.p-when { align-self: center; font-size: 13px; color: var(--dim); white-space: nowrap; }
+.p-line { grid-column: 1 / -1; color: rgba(242, 237, 230, .78); font-size: 17px; }
+.p-more { grid-column: 1 / -1; width: 16px; height: 16px; margin-top: 6px; position: relative; opacity: .6; }
+.p-more::before, .p-more::after { content: ""; position: absolute; left: 0; top: 7.5px; width: 16px; height: 1px; background: var(--ink); transition: transform .3s; }
+.p-more::after { transform: rotate(90deg); }
+details[open] .p-more::after { transform: rotate(0deg); }
+.p-body { padding: 0 0 30px; max-width: 40em; animation: fadein .4s ease both; }
+.p-body p { margin-top: 12px; font-size: 16.5px; color: rgba(242, 237, 230, .85); }
+.p-title { font-style: italic; color: var(--dim) !important; font-size: 15px !important; margin-top: 0 !important; }
+.p-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 18px !important; font-size: 15px !important; }
 @keyframes fadein { from { opacity: 0; } }
-@keyframes rise { from { opacity: 0; transform: scale(.85); } }
-@media (prefers-reduced-motion: reduce) { .bubble.burst, .card-in, .reveal-card { animation: none; } }

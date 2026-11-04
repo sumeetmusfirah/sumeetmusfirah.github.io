@@ -1,0 +1,34 @@
+% One-page abstract for Axiom, linked from the website's Research page.
+% Text follows the abstract in github.com/sumeetmusfirah/axiom-neuro/paper/main.tex.
+% Build: tectonic docs/axiom-abstract.tex && mv docs/axiom-abstract.pdf public/
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+{\Large\bfseries Axiom: Do Language Models Design and Analyse\\[2pt] Experiments Like Scientists?}\\[8pt]
+{\large A cognitive-control lab fitted to real human EEG, and a signalling lab on real single cells}\\[14pt]
+Sumeet Musfirah\\[2pt]
+{\small Drexel University, Philadelphia, PA, USA}
+\end{center}
+\vspace{10pt}
+\noindent\textbf{Abstract.}
+Evaluations of AI scientists usually grade prose, often with another language model as the judge, and those judges can disagree at chance on the same outputs.
+We instead build a laboratory whose answers are known.
+Axiom-Neuro simulates a human cognitive-control study (a flanker task with working-memory load, transcranial stimulation, and EEG).
+Each task hides a causal mechanism among six candidate edges, and an agent must find it by designing experiments under a fixed participant-hour budget, analysing the data with standard tools, and submitting calibrated claims.
+Several tasks open with pilot data containing a planted confound that real human-subjects researchers fall for: a stimulation effect that is really practice, and a theta effect that is really blinks.
+The simulator's noise, heterogeneity and artifacts are fitted to the ERP CORE flanker dataset (40 participants) and validated on held-out participants.
+A second, semi-synthetic track uses real ERP CORE trials as the substrate and injects known effects on top.
+Scoring needs no judge: claims are compared with the hidden mechanism using a proper scoring rule.
+Because the same ideal analyst can be applied to any agent's data, each agent's error splits cleanly into an experiment-design part and an analysis part.
+A second lab, Axiom-Bio, asks the same question on 7,466 real T cells (Sachs et al., 2005): which signalling molecules directly regulate which, given real drug interventions; comparing real molecule names with abstract labels separates recalling textbook biology from inferring it from data.
+Hypotheses, the stopping rule and all analyses were preregistered before any language-model episode ran, and the whole study runs unattended on free infrastructure with a public results ledger.
+Language-model runs are in progress, and results are added to the public ledger as they complete.
+
+\vspace{14pt}
+\noindent{\small Project and data: \url{https://github.com/sumeetmusfirah/axiom-neuro}}
+\end{document}

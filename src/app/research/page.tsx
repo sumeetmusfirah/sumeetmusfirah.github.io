@@ -6,14 +6,14 @@ import { PAPERS, TALKS, type Paper } from "@/content/papers";
 
 export const metadata: Metadata = {
   title: "Research — Sumeet Musfirah",
-  description: "Papers, preprints and preregistered studies on AI evaluation, scientific judgement and epistemic behaviour in language models.",
+  description: "What I'm working on and what I've published: AI behavior, evaluation, and a materials paper from my DARPA internship.",
 };
 
-const STATUS: Record<Paper["status"], string> = {
-  live: "running · preprint",
-  complete: "complete · public",
-  prereg: "preregistered · data pending",
-  published: "peer-reviewed",
+const WHERE: Record<Paper["status"], string> = {
+  live: "In progress",
+  complete: "Writing it up",
+  prereg: "Planned",
+  published: "Published",
 };
 
 export default function Research() {
@@ -22,76 +22,42 @@ export default function Research() {
       <div className="backdrop"><Field quiet /></div>
       <Nav current="research" />
       <main className="page">
-        <header className="page-head wrap">
-          <h1 className="h1">Research</h1>
-        </header>
+        <h1 className="title">Research</h1>
 
-
-        <div className="wrap">
-          {PAPERS.map((p, i) => (
-              <article key={p.slug} id={p.slug} className="article">
-                <div className="article-band">
-                  <span>{p.venue}</span>
-                  <span>
-                    No. {String(i + 1).padStart(2, "0")}
-                    {p.year && ` · ${p.year}`}
-                  </span>
-                </div>
-                <div className="article-body">
-                  <span className={`status ${p.status === "complete" || p.status === "published" ? "done" : ""}`}>
-                    {STATUS[p.status]}
-                  </span>
-                  <h2 className="article-title">{p.title}</h2>
-                  <p className="article-author">{p.authors ?? "Sumeet Musfirah"}</p>
-                  <p className="q">{p.question}</p>
-                  <div className="abstract">
-                    <p className="label">Abstract</p>
-                    {p.abstract.map((para) => (
-                      <p key={para.slice(0, 24)}>{para}</p>
-                    ))}
-                  </div>
-                  {p.figure && (
-                    <figure className="fig article-fig">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.figure.src} alt={p.figure.alt} loading="lazy" />
-                      <figcaption>
-                        <em>Fig. {i + 1}.</em> {p.figure.caption}
-                      </figcaption>
-                    </figure>
+        <ul className="projects">
+          {PAPERS.map((p) => (
+            <li key={p.slug} id={p.slug}>
+              <details>
+                <summary>
+                  <span className="p-name">{p.short}</span>
+                  <span className="p-when">{WHERE[p.status]}{p.year && ` · ${p.year}`}</span>
+                  <span className="p-line">{p.question}</span>
+                  <span className="p-more" aria-hidden />
+                </summary>
+                <div className="p-body">
+                  <p className="p-title">{p.title}</p>
+                  {p.authors && <p className="dim small">{p.authors}</p>}
+                  {p.abstract.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
+                  {p.links.length > 0 && (
+                    <p className="p-links">
+                      {p.links.map((l) => <a key={l.href} className="link" href={l.href}>{l.label}</a>)}
+                    </p>
                   )}
-                  <div className="article-foot">
-                    <div className="tags">
-                      {p.tags.map((t) => (
-                        <span key={t}>{t}</span>
-                      ))}
-                    </div>
-                    {p.links.length > 0 && (
-                      <p>
-                        {p.links.map((l, j) => (
-                          <span key={l.href}>
-                            {j > 0 && " · "}
-                            <a className="link" href={l.href}>{l.label}</a>
-                          </span>
-                        ))}
-                      </p>
-                    )}
-                  </div>
                 </div>
-              </article>
+              </details>
+            </li>
           ))}
+        </ul>
 
-          <section className="talks-block">
-            <p className="label">Talks</p>
-            <ul className="talks">
-              {TALKS.map((t) => (
-                <li key={t.what}>
-                  <span className="talk-t">{t.what}</span>
-                  <span className="talk-w">{t.where}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+        <p className="label" style={{ marginTop: 64 }}>Talks</p>
+        <ul className="talks">
+          {TALKS.map((t) => (
+            <li key={t.what}>
+              <span className="talk-t">{t.what}</span>
+              <span className="talk-w">{t.where}</span>
+            </li>
+          ))}
+        </ul>
       </main>
       <Footer />
     </>
