@@ -228,14 +228,13 @@ export default function Field({ quiet = false }: { quiet?: boolean }) {
     addEventListener("pointermove", onMove);
 
     const ray = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hit = new THREE.Vector3();
-    let clicks = 0, gathering = false;
+    let gathering = false;
     const onClick = (e: MouseEvent) => {
       ray.setFromCamera(new THREE.Vector2((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1), camera);
       if (gathering || !ray.ray.intersectPlane(plane, hit)) return;
       pts.worldToLocal(hit);
       if (voices.length >= MAX_VOICES) voices.splice(3, 1); // the three resident voices stay
       voices.push({ p: hit.clone(), axis: new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, 1).normalize(), pull: 2.4, life: 6 });
-      if (++clicks === 7) say("Seven loud voices. Nobody is listening to the evidence anymore.");
     };
     if (!quiet) canvas.addEventListener("click", onClick);
 
@@ -260,7 +259,6 @@ export default function Field({ quiet = false }: { quiet?: boolean }) {
       voices.forEach((v) => { v.saved = v.pull; v.pull = 0; });
       const centre: Voice = { p: new THREE.Vector3(0, 0, 0), axis: new THREE.Vector3(0, 0, 1), pull: 7, life: Infinity };
       voices.push(centre);
-      say("for a second, everyone agreed.");
       setTimeout(() => { centre.pull = -14; }, 1700);
       setTimeout(() => {
         voices.splice(voices.indexOf(centre), 1);
