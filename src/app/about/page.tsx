@@ -5,7 +5,7 @@ import { HONORS } from "@/content/papers";
 
 export const metadata: Metadata = {
   title: "About — Sumeet Musfirah",
-  description: "Neuroscience and psychology at Drexel University; research on how minds, human and machine, decide what to trust.",
+  description: "Neuroscience and psychology at Drexel University, and AI alignment research.",
 };
 
 const PATH = [
@@ -28,15 +28,15 @@ export default function About() {
             <h1 className="title">About</h1>
             <div className="prose">
               <p>
-                I started with brains: theory of mind, and later cognitive neuroscience at Drexel. The question
-                that kept following me was how a mind decides what to trust. Now I ask it of language models too:
-                when they hold their ground, when they give way, and whether the tools we use to judge them can be
-                trusted at all.
+                What got me into neuroscience was consciousness: how we perceive the world around us. It got
+                personal when I discovered I don&apos;t have an internal monologue.
               </p>
+              <p>Right now I&apos;m working on a few AI alignment projects.</p>
               <p>
-                Along the way I have worked on materials for DARPA, built AI for medicine, and made a card game
-                about South Asian culture.
+                When I&apos;m not studying, I&apos;m busy being an RA and putting together fun events for PSA at
+                Drexel, since I&apos;m on the e-board.
               </p>
+              <p>I love making small talk with strangers and sharing random tidbits of life.</p>
             </div>
             <ul className="path">
               {PATH.map((x) => (
