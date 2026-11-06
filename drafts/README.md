@@ -15,3 +15,8 @@ Open one with a local server so the browser loads it properly:
 - `attractors.html`: the first particle-field prototype, which became the live home page.
 - `quirky.html`: four rejected directions (Second thoughts, Brainwave, My desk, Toss my name).
 - `index.html`: three rejected "designer" directions (Dôen, Zimmermann, Sézane).
+
+## journal-route/
+The Journal pages, taken off the site on 2026-11-06 until Sumeet writes her own entries.
+To restore: `git mv drafts/journal-route src/app/journal`, and add the Journal link back in `src/components/Nav.tsx`.
+Entries are still in `src/content/journal.ts`.

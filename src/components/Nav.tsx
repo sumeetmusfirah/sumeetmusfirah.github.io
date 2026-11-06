@@ -3,14 +3,13 @@ import Name from "@/components/Name";
 
 export const EMAIL = "sumeetmusfirah23@gmail.com";
 
-export default function Nav({ current }: { current?: "research" | "journal" | "about" }) {
+export default function Nav({ current }: { current?: "research" | "about" }) {
   const here = (k: string) => (current === k ? "page" : undefined);
   return (
     <header className="nav">
       <Name />
       <nav aria-label="Primary">
         <Link href="/research" aria-current={here("research")}>Research</Link>
-        <Link href="/journal" aria-current={here("journal")}>Journal</Link>
         <Link href="/about" aria-current={here("about")}>About</Link>
         <a href={`mailto:${EMAIL}`}>Say hi</a>
       </nav>
